@@ -20,21 +20,26 @@
 
     <div id="video-sim">VIDEO CALL RECORDING...</div>
 
-    <script>
-        // 1. Capture Location from QR URL [cite: 46, 48]
-        const params = new URLSearchParams(window.location.search);
-        const loc = params.get('loc') || "Unknown Area";
-        document.getElementById('loc-display').innerText = "Location: " + loc;
+   <script>
+    // 1. Contextual Information: Identify the exact location from the QR scan 
+    const params = new URLSearchParams(window.location.search);
+    const loc = params.get('loc') || "Unknown Area"; 
+    
+    // Update the header from "Scanning..." to the actual location [cite: 48]
+    document.getElementById('loc-display').innerText = "Location: " + loc;
 
-        function startCall(target) {
-            alert("Connecting to " + target + "...\nLocation Context: " + loc + "\nRecording Started."); [cite: 50, 60]
-            document.getElementById('tenant-ui').style.display = 'none';
-            document.getElementById('video-sim').style.display = 'block';
-            
-            // 2. Simulate Data Tracking [cite: 33, 80]
-            console.log("Event Logged: Call from " + loc + " to " + target);
-            console.log("Status: OPEN - Tracked in Admin Dashboard"); [cite: 63]
-        }
-    </script>
+    function startCall(target) {
+        // 2. Simulate the recorded interaction mentioned in your proposal [cite: 13, 20]
+        alert("Connecting to " + target + "...\nLocation: " + loc + "\nStatus: Recording Started.");
+        
+        // Change UI to show "Live" status 
+        document.getElementById('tenant-ui').style.display = 'none';
+        document.getElementById('video-sim').style.display = 'block';
+        document.getElementById('video-sim').innerText = "LIVE RECORDED CALL - " + loc;
+        
+        // 3. Traceability: In a full build, this sends data to the Analytics Engine [cite: 34, 74]
+        console.log("Incident Logged: Call from " + loc + " at " + new Date().toLocaleString());
+    }
+</script>
 </body>
 </html>
