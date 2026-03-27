@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Green Footprint Prototype</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; }
+        .btn { padding: 20px; font-size: 18px; color: white; border: none; border-radius: 10px; cursor: pointer; width: 100%; margin: 10px 0; }
+        .btn-call { background-color: #28a745; }
+        .btn-emergency { background-color: #dc3545; }
+        #video-sim { width: 100%; height: 250px; background: #333; display: none; margin-top: 20px; border-radius: 10px; color: white; line-height: 250px; }
+    </style>
+</head>
+<body>
+    <h2 id="loc-display">Scanning Location...</h2>
+    <div id="tenant-ui">
+        <button class="btn btn-call" onclick="startCall('Security')">Call Security Guard</button>
+        <button class="btn btn-emergency" onclick="startCall('Emergency Services')">EMERGENCY (Ambulance/Fire)</button>
+    </div>
+
+    <div id="video-sim">VIDEO CALL RECORDING...</div>
+
+    <script>
+        // 1. Capture Location from QR URL [cite: 46, 48]
+        const params = new URLSearchParams(window.location.search);
+        const loc = params.get('loc') || "Unknown Area";
+        document.getElementById('loc-display').innerText = "Location: " + loc;
+
+        function startCall(target) {
+            alert("Connecting to " + target + "...\nLocation Context: " + loc + "\nRecording Started."); [cite: 50, 60]
+            document.getElementById('tenant-ui').style.display = 'none';
+            document.getElementById('video-sim').style.display = 'block';
+            
+            // 2. Simulate Data Tracking [cite: 33, 80]
+            console.log("Event Logged: Call from " + loc + " to " + target);
+            console.log("Status: OPEN - Tracked in Admin Dashboard"); [cite: 63]
+        }
+    </script>
+</body>
+</html>
