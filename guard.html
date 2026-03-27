@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guardhouse Dashboard</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        .dashboard { display: flex; gap: 20px; }
+        .feed { flex: 2; background: #000; height: 400px; color: white; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+        .controls { flex: 1; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .status-open { color: red; font-weight: bold; }
+        .status-solved { color: green; font-weight: bold; }
+        button { width: 100%; padding: 10px; margin: 5px 0; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Security Guard Terminal</h1>
+    <div class="dashboard">
+        <div class="feed">
+            <p id="video-status">Awaiting Incoming Call...</p>
+        </div>
+        <div class="controls">
+            <h3>Active Incident</h3>
+            <p><strong>Location:</strong> <span id="inc-loc">None</span></p>
+            <p><strong>Status:</strong> <span id="inc-status" class="status-open">OPEN</span></p>
+            <hr>
+            <button onclick="escalate('Fire')">Call Fire Station</button>
+            <button onclick="escalate('Police')">Call Police</button>
+            <button style="background: #28a745; color: white;" onclick="solve()">Mark as SOLVED</button>
+        </div>
+    </div>
+
+    <script>
+        // In a real app, this would use WebSockets to "hear" the tenant's call
+        function simulateIncomingCall(location) {
+            document.getElementById('video-status').innerText = "LIVE VIDEO FROM: " + location;
+            document.getElementById('inc-loc').innerText = location;
+            document.getElementById('inc-status').innerText = "OPEN";
+            document.getElementById('inc-status').className = "status-open";
+        }
+
+        function solve() {
+            document.getElementById('inc-status').innerText = "SOLVED";
+            document.getElementById('inc-status').className = "status-solved";
+            alert("Incident logged and closed for analysis.");
+        }
+
+        function escalate(service) {
+            alert("Initiating direct call to " + service + " with location context!");
+        }
+    </script>
+</body>
+</html>
